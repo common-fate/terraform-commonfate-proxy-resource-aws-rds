@@ -33,7 +33,7 @@ data "commonfate_proxy_ecs_proxy" "proxy_data" {
 }
 
 resource "aws_iam_policy" "database_secrets_read_access" {
-  name        = "${var.namespace}-${var.stage}-proxy-ecs-sm"
+  name        = "${var.namespace}-${var.stage}-database_secret_read_access"
   description = "Allows pull database secret from secrets manager"
 
   policy = jsonencode({
@@ -64,14 +64,14 @@ resource "aws_security_group_rule" "postgres_access_from_proxy" {
 }
 
 
-resource "proxy_rds_database" "demo" {
+resource "commonfate_proxy_rds_database" "demo" {
   proxy_id    = var.proxy_id
-  instance_id = var.instance_id
-  name        = "Demo postgres Database"
-  endpoint    = "localhost:5434"
-  database    = "testpostgresdb"
-  engine      = "postgres"
-  region      = "ap-southeast-2"
+
+  name        = var.name
+  endpoint    = var.endpoint
+  database    = var.database
+  engine      = var.engine
+  region      = var.region
 
   users = var.users
 }
