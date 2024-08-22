@@ -19,7 +19,9 @@ provider "aws" {
 
 locals {
   name_prefix    = join("-", compact([var.namespace, var.stage, var.proxy_id]))
-
+  password_secrets_manager_arns = flatten([
+      for user in var.users : user.passwordSecretsManagerARN
+  ])
 }
 
 
@@ -30,27 +32,26 @@ data "commonfate_proxy_ecs_proxy" "proxy_data" {
 
 }
 
-resource "aws_iam_policy" "read_secrets" {
-  name        ="${local.name_prefix}-read-database-secret"
-  description = "Allows access to read database password secret from ssm"
+resource "aws_iam_policy" "database_secrets_read_access" {
+  name        = "${var.namespace}-${var.stage}-proxy-ecs-sm"
+  description = "Allows pull database secret from secrets manager"
 
   policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
+    Version = "2012-10-17",
+    Statement = [
       {
-        "Effect" : "Allow",
+        Effect = "Allow",
         "Action" : [
-          "ssm:GetParameter",
+          "secretsmanager:GetSecretValue"
         ],
-        "Resource" : "*"
+        "Resource" : local.password_secrets_manager_arns
       }
     ]
   })
 }
-
 resource "aws_iam_role_policy_attachment" "read_secrets" {
-  role = commonfate_proxy_ecs_proxy.proxy_data.ecs_cluster_reader_role_arn
-  policy_arn   = aws_iam_policy.read_secrets.arn
+  role = commonfate_proxy_ecs_proxy.proxy_data.ecs_cluster_task_role_name
+  policy_arn   = aws_iam_policy.database_secrets_read_access.arn
 }
 
 resource "aws_security_group_rule" "postgres_access_from_proxy" {
