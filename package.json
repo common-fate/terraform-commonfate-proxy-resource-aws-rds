@@ -1,0 +1,15 @@
+{
+  "name": "@common-fate/terraform-aws-common-fate-proxy-rds",
+  "version": "1.2.2",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1"
+  },
+  "scripts": {
+    "changeset": "changeset"
+  }
+}
