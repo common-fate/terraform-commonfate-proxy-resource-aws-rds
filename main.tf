@@ -13,9 +13,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "ap-southeast-2"
-}
 
 locals {
   name_prefix    = join("-", compact([var.namespace, var.stage, var.proxy_id]))
@@ -47,7 +44,7 @@ resource "aws_iam_policy" "database_secrets_read_access" {
         "Resource" : local.password_secrets_manager_arns
       }
     ]
-  })
+})
 }
 resource "aws_iam_role_policy_attachment" "read_secrets" {
   role = commonfate_proxy_ecs_proxy.proxy_data.ecs_cluster_task_role_name
@@ -63,15 +60,18 @@ resource "aws_security_group_rule" "postgres_access_from_proxy" {
   source_security_group_id = data.proxy.security_group_id
 }
 
+data "aws_db_instance" "database" {
+  db_instance_identifier = var.rds_name
+}
 
 resource "commonfate_proxy_rds_database" "demo" {
   proxy_id    = var.proxy_id
 
-  name        = var.name
-  endpoint    = var.endpoint
-  database    = var.database
-  engine      = var.engine
-  region      = var.region
+  name        = var.rds_name
+  endpoint    = aws_db_instance.database.endpoint
+  database    = aws_db_instance.database.db_name
+  engine      = aws_db_instance.database.engine
+  region      = aws_db_instance.database.region
 
   users = var.users
 }

@@ -32,31 +32,12 @@ variable "rds_security_group_id" {
 }
 
 
-variable "endpoint" {
-  description = "The endpoint for the RDS database."
-  type        = string
-}
 
-
-variable "name" {
+variable "rds_name" {
   description = "The name of thes RDS database."
   type        = string
 }
 
-variable "database" {
-  description = "The database name RDS database."
-  type        = string
-}
-
-variable "engine" {
-  description = "The database engine of your RDS database."
-  type        = string
-}
-
-variable "region" {
-  description = "The region your RDS database is deployed in."
-  type        = string
-}
 
 
 
