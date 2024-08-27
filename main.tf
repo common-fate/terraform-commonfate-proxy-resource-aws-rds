@@ -45,6 +45,7 @@ resource "aws_iam_policy" "database_secrets_read_access" {
     ]
 })
 }
+
 resource "aws_iam_role_policy_attachment" "read_secrets" {
   role = commonfate_proxy_ecs_proxy.proxy_data.ecs_cluster_task_role_name
   policy_arn   = aws_iam_policy.database_secrets_read_access.arn
