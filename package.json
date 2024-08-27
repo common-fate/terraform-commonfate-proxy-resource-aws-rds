@@ -1,6 +1,6 @@
 {
   "name": "@common-fate/terraform-commonfate-proxy-resource-rds",
-  "version": "1.2.2",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "keywords": [],
