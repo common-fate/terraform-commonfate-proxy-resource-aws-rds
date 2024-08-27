@@ -25,7 +25,6 @@ locals {
 //data source to look up proxy that has already been registered
 data "commonfate_proxy_ecs_proxy" "proxy_data" {
   id    =  var.proxy_id
-
 }
 
 resource "aws_iam_policy" "database_secrets_read_access" {
