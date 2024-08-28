@@ -34,12 +34,20 @@ variable "rds_security_group_id" {
 
 
 variable "rds_instance_identifier" {
-  description = "The name of thes RDS database."
+  description = "The identifier of the rds instance."
   type        = string
 }
 
 
+variable "name" {
+  description = "A name to give the RDS instance, this will be the name used in Common Fate."
+  type        = string
+}
 
+variable "rds_database_name" {
+  description = "The underlying database name in RDS."
+  type        = string
+}
 
 variable "users" {
   description = "List of users with access to the RDS database"

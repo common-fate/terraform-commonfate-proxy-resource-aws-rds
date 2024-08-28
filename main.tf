@@ -50,18 +50,20 @@ resource "aws_iam_role_policy_attachment" "read_secrets" {
   policy_arn   = aws_iam_policy.database_secrets_read_access.arn
 }
 
+data "aws_db_instance" "database" {
+  db_instance_identifier = var.rds_instance_identifier
+}
+
+
 resource "aws_security_group_rule" "postgres_access_from_proxy" {
   type                     = "ingress"
-  from_port                = 5432 //data.aws_rds_instance.port
-  to_port                  = 5432 //data.aws_rds_instance.port
+  from_port                = data.aws_db_instance.database.port //data.aws_rds_instance.port
+  to_port                  = data.aws_db_instance.database.port //data.aws_rds_instance.port
   protocol                 = "tcp"
   security_group_id        = var.rds_security_group_id // database security group id
   source_security_group_id = data.proxy.security_group_id
 }
 
-data "aws_db_instance" "database" {
-  db_instance_identifier = var.rds_instance_identifier
-}
 
 resource "commonfate_proxy_rds_database" "demo" {
   proxy_id    = var.proxy_id
