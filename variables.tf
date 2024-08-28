@@ -59,8 +59,6 @@ variable "users" {
 
     password_secrets_manager_arn = string
 
-    password = string
-
   }))
 
 }
