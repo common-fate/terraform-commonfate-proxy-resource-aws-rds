@@ -60,7 +60,7 @@ resource "aws_security_group_rule" "postgres_access_from_proxy" {
 }
 
 data "aws_db_instance" "database" {
-  db_instance_identifier = var.rds_name
+  db_instance_identifier = var.rds_instance_identifier
 }
 
 resource "commonfate_proxy_rds_database" "demo" {

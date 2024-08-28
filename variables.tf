@@ -33,7 +33,7 @@ variable "rds_security_group_id" {
 
 
 
-variable "rds_name" {
+variable "rds_instance_identifier" {
   description = "The name of thes RDS database."
   type        = string
 }
