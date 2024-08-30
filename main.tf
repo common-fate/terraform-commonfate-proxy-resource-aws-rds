@@ -3,7 +3,7 @@
 locals {
   name_prefix    = join("-", compact([var.namespace, var.stage, var.proxy_id]))
   password_secrets_manager_arns = flatten([
-      for user in var.users : user.passwordSecretsManagerARN
+      for user in var.users : user.password_secrets_manager_arn
   ])
 }
 
