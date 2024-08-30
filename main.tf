@@ -1,17 +1,3 @@
-terraform {
-  required_providers {
-
-
-    commonfate = {
-      source = "common-fate/commonfate"
-      version = "2.24.0"
-    }
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
 
 
 locals {
