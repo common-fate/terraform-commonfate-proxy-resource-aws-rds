@@ -53,7 +53,7 @@ resource "aws_iam_policy" "database_secrets_read_access" {
 }
 
 resource "aws_iam_role_policy_attachment" "read_secrets" {
-  role = commonfate_proxy_ecs_proxy.proxy_data.ecs_cluster_task_role_name
+  role = commonfate_ecs_proxy.proxy_data.ecs_cluster_task_role_name
   policy_arn   = aws_iam_policy.database_secrets_read_access.arn
 }
 
@@ -68,7 +68,7 @@ resource "aws_security_group_rule" "postgres_access_from_proxy" {
   to_port                  = data.aws_db_instance.database.port //data.aws_rds_instance.port
   protocol                 = "tcp"
   security_group_id        = var.rds_security_group_id // database security group id
-  source_security_group_id = data.proxy.ecs_cluster_security_group_id
+  source_security_group_id = data.commonfate_ecs_proxy.ecs_cluster_security_group_id
 }
 
 
