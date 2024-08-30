@@ -79,7 +79,7 @@ resource "commonfate_proxy_rds_database" "demo" {
   endpoint    = data.aws_db_instance.database.endpoint
   database    = data.aws_db_instance.database.db_name
   engine      = data.aws_db_instance.database.engine
-  region      = data.aws_db_instance.database.region
+  region      = var.region
 
   users = var.users
 }
