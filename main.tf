@@ -76,9 +76,8 @@ resource "commonfate_proxy_rds_database" "demo" {
   proxy_id    = var.proxy_id
   
   name        = var.name
-
   endpoint    = data.aws_db_instance.database.endpoint
-  database    = data.aws_db_instance.database.db_name
+  database    = var.rds_database_name
   engine      = data.aws_db_instance.database.engine
   region      = var.region
 
