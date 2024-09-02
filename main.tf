@@ -7,26 +7,6 @@ locals {
   ])
 }
 
-terraform {
-  required_providers {
-    commonfate = {
-      source  = "common-fate/commonfate"
-      version = "2.25.0-alpha4"
-    }
-
-    
-  }
-}
-
-provider "commonfate" {
-  authz_url = var.app_url
-  api_url   = var.app_url
-  # oidc_client_id     = <filled in via GitHub Actions env vars>
-  # oidc_client_secret = <filled in via GitHub Actions env vars>
-  oidc_issuer = "https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_xzhfVdcnp"
-}
-
-
 
 
 //data source to look up proxy that has already been registered
