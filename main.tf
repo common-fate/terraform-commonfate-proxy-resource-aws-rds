@@ -7,6 +7,19 @@ locals {
   ])
 }
 
+terraform {
+  required_providers {
+    commonfate = {
+      source  = "common-fate/commonfate"
+      version = "2.25.0-alpha4"
+    }
+
+    
+  }
+}
+
+
+
 
 
 //data source to look up proxy that has already been registered
