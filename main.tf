@@ -69,7 +69,7 @@ resource "commonfate_proxy_rds_database" "demo" {
   proxy_id    = var.proxy_id
   
   name        = var.name
-  instance_id = var.rds_instance_identifier
+  # instance_id = var.rds_instance_identifier
   endpoint    = data.aws_db_instance.database.endpoint
   database    = var.rds_database_name
   engine      = data.aws_db_instance.database.engine
