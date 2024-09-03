@@ -11,7 +11,7 @@ terraform {
   required_providers {
     commonfate = {
       source  = "common-fate/commonfate"
-      version = "2.25.0-alpha8"
+      version = "2.25.0-alpha9"
     }
 
     
@@ -74,6 +74,7 @@ resource "commonfate_proxy_rds_database" "demo" {
   database    = var.rds_database_name
   engine      = data.aws_db_instance.database.engine
   region      = var.region
+
 
   users = var.users
 }
