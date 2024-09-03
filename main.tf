@@ -39,7 +39,7 @@ resource "aws_iam_policy" "database_secrets_read_access" {
         "Action" : [
           "secretsmanager:GetSecretValue"
         ],
-        "Resource" : local.password_secrets_manager_arns
+        "Resource" : distinct(local.password_secrets_manager_arns)
       }
     ]
 })
