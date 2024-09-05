@@ -44,12 +44,6 @@ variable "name" {
   type        = string
 }
 
-variable "region" {
-  description = "The region the RDS database is deployed in."
-  type        = string
-}
-
-
 variable "rds_database_name" {
   description = "The underlying database name in RDS."
   type        = string

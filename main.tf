@@ -10,12 +10,12 @@ terraform {
     }
   }
 }
-
+data "aws_region" "current" {}
 locals {
-  name_prefix = join("-", compact([var.namespace, var.stage, var.proxy_id]))
   password_secrets_manager_arns = flatten([
     for user in var.users : user.password_secrets_manager_arn
   ])
+  aws_region = data.aws_region.current.name
 }
 
 
@@ -47,7 +47,7 @@ resource "commonfate_proxy_rds_database" "database" {
   endpoint    = data.aws_db_instance.database.endpoint
   database    = var.rds_database_name
   engine      = data.aws_db_instance.database.engine
-  region      = var.region
+  region      = local.aws_region
 
   users = var.users
 }
