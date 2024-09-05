@@ -4,6 +4,10 @@ terraform {
       source  = "common-fate/commonfate"
       version = "2.25.0-alpha10"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
   }
 }
 
