@@ -42,9 +42,10 @@ variable "rds_instance_identifier" {
 variable "name" {
   description = "A human readable name to give the RDS database resource in Common Fate."
   type        = string
+  default     = var.database
 }
 
-variable "rds_database_name" {
+variable "database" {
   description = "The name of the database to connect to on the RDS instance."
   type        = string
 }
