@@ -11,7 +11,7 @@ variable "stage" {
 }
 
 variable "proxy_id" {
-  description = "the ID for this proxy e.g prod-us-west-2."
+  description = "The ID for this proxy e.g prod-us-west-2."
   type        = string
 }
 
@@ -40,17 +40,17 @@ variable "rds_instance_identifier" {
 
 
 variable "name" {
-  description = "A name to give the RDS instance, this will be the name used in Common Fate."
+  description = "A human readable name to give the RDS database resource in Common Fate."
   type        = string
 }
 
 variable "rds_database_name" {
-  description = "The underlying database name in RDS."
+  description = "The name of the database to connect to on the RDS instance."
   type        = string
 }
 
 variable "users" {
-  description = "List of users with access to the RDS database"
+  description = "A list of database users and their credentials to access the database"
   type = list(object({
 
     name = string
