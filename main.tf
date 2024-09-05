@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "postgres_access_from_proxy" {
 resource "commonfate_proxy_rds_database" "database" {
   proxy_id = var.proxy_id
 
-  name        = var.name
+  name        = var.name == "" ? var.database : var.name
   instance_id = var.rds_instance_identifier
   endpoint    = data.aws_db_instance.database.endpoint
   database    = var.database
