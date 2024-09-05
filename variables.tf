@@ -11,7 +11,7 @@ variable "stage" {
 }
 
 variable "proxy_id" {
-  description = "The ID for this proxy e.g prod-us-west-2."
+  description = "The ID of the Common Fate AWS RDS Proxy e.g prod-us-west-2. The proxy is deployed seperately, it must exist before you register a database using this module."
   type        = string
 }
 
