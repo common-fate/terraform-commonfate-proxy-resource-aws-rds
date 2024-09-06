@@ -1,5 +1,11 @@
 ## 0.1.0
 
+## 1.0.0
+
+### Major Changes
+
+- 908b21c: This module us used to register an RDS database and users with Common Fate in conjunction with an AWS RDS Proxy.
+
 ## 0.2.0
 
 ### Minor Changes
