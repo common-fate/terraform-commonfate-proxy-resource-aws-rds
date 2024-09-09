@@ -2,7 +2,7 @@ terraform {
   required_providers {
     commonfate = {
       source  = "common-fate/commonfate"
-      version = "~> 2.25"
+      version = "~> 2.25.1"
     }
     aws = {
       source  = "hashicorp/aws"
@@ -11,11 +11,13 @@ terraform {
   }
 }
 data "aws_region" "current" {}
+data "aws_caller_identity" "current" {}
 locals {
   password_secrets_manager_arns = flatten([
     for user in var.users : user.password_secrets_manager_arn
   ])
-  aws_region = data.aws_region.current.name
+  aws_region     = data.aws_region.current.name
+  aws_account_id = data.aws_caller_identity.current.account_id
 }
 
 
@@ -42,12 +44,13 @@ resource "aws_security_group_rule" "postgres_access_from_proxy" {
 resource "commonfate_proxy_rds_database" "database" {
   proxy_id = var.proxy_id
 
-  name        = var.name == "" ? var.database : var.name
-  instance_id = var.rds_instance_identifier
-  endpoint    = data.aws_db_instance.database.endpoint
-  database    = var.database
-  engine      = data.aws_db_instance.database.engine
-  region      = local.aws_region
+  name           = var.name == "" ? var.database : var.name
+  instance_id    = var.rds_instance_identifier
+  endpoint       = data.aws_db_instance.database.endpoint
+  database       = var.database
+  engine         = data.aws_db_instance.database.engine
+  region         = local.aws_region
+  aws_account_id = local.aws_account_id
 
   users = var.users
 }
