@@ -1,5 +1,11 @@
 ## 0.1.0
 
+## 1.0.1
+
+### Patch Changes
+
+- 055652f: Provide the current aws account id when registering the database resource with the Common Fate API. The account and region must match the Proxy integration.
+
 ## 1.0.0
 
 ### Major Changes
