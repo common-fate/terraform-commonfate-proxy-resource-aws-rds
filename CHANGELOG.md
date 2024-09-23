@@ -1,5 +1,11 @@
 ## 0.1.0
 
+## 1.1.0
+
+### Minor Changes
+
+- 55ab27b: Allow creation of the security group rule to be disabled, by setting the 'create_security_group_rule' variable to false.
+
 ## 1.0.1
 
 ### Patch Changes
