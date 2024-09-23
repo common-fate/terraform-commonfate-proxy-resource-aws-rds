@@ -32,6 +32,7 @@ data "aws_db_instance" "database" {
 
 // Add network access for the proxy to the database instance
 resource "aws_security_group_rule" "postgres_access_from_proxy" {
+  count                    = var.create_security_group_rule ? 1 : 0
   type                     = "ingress"
   from_port                = data.aws_db_instance.database.port
   to_port                  = data.aws_db_instance.database.port

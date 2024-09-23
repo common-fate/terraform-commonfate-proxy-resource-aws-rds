@@ -63,3 +63,9 @@ variable "users" {
   }))
 
 }
+
+variable "create_security_group_rule" {
+  description = "If 'true', will create a rule allowing ingress from the proxy to the database security group. The database security group is specified by the 'rds_security_group_id' variable."
+  type        = bool
+  default     = true
+}
