@@ -25,13 +25,18 @@ variable "app_url" {
   }
 }
 
-
 variable "rds_security_group_id" {
   description = "The security group attached with your RDS database."
   type        = string
+  default     = ""
+
+  validation {
+    # when create_security_group_rule is false, a rds_security_group_id is not required, it can either have a value or be empty
+    # when create_security_group_rule is true, rds_security_group_id must not be empty
+    condition     = var.create_security_group_rule == false || length(var.rds_security_group_id) > 0
+    error_message = "rds_security_group_id must not be empty when create_security_group_rule is true."
+  }
 }
-
-
 
 variable "rds_instance_identifier" {
   description = "The identifier of the rds instance."
@@ -63,6 +68,7 @@ variable "users" {
   }))
 
 }
+
 
 variable "create_security_group_rule" {
   description = "If 'true', will create a rule allowing ingress from the proxy to the database security group. The database security group is specified by the 'rds_security_group_id' variable."
