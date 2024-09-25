@@ -1,5 +1,11 @@
 ## 0.1.0
 
+## 1.1.1
+
+### Patch Changes
+
+- a94c200: Allow the rds_security_group_id to be empty when create_security_group_rule is false.
+
 ## 1.1.0
 
 ### Minor Changes
