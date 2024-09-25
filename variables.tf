@@ -31,7 +31,7 @@ variable "rds_security_group_id" {
   default     = ""
 
   validation {
-    condition     = var.create_security_group_rule == false || length(var.rds_security_group_id) > 0
+    condition     = var.create_security_group_rule == true && length(var.rds_security_group_id) == 0
     error_message = "rds_security_group_id must not be empty when create_security_group_rule is true."
   }
 }
