@@ -1,5 +1,11 @@
 ## 0.1.0
 
+## 1.1.2
+
+### Patch Changes
+
+- a335783: Added the ability to specify an override for the rds endpoint per rds user to allow read roles to use a read only replica endpoint.
+
 ## 1.1.1
 
 ### Patch Changes
