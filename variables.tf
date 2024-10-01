@@ -65,7 +65,7 @@ variable "users" {
 
     password_secrets_manager_arn = string
 
-    endpoint = string
+    endpoint = optional(string)
 
   }))
 
