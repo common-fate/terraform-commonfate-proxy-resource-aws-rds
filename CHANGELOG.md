@@ -1,5 +1,11 @@
 ## 0.1.0
 
+## 1.1.3
+
+### Patch Changes
+
+- 967db7f: Fix version constraint for the Common Fate Terraform provider to allow minor version updates.
+
 ## 1.1.2
 
 ### Patch Changes
