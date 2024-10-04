@@ -1,5 +1,11 @@
 ## 0.1.0
 
+## 1.1.4
+
+### Patch Changes
+
+- 9b745b6: Relax common-fate/commonfate provider version constraint to ">= 2.25.3, < 3.0.0"
+
 ## 1.1.3
 
 ### Patch Changes
