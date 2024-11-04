@@ -1,5 +1,11 @@
 ## 0.1.0
 
+## 1.1.5
+
+### Patch Changes
+
+- 00c32ef: Allow a default port to be set on a database user
+
 ## 1.1.4
 
 ### Patch Changes
