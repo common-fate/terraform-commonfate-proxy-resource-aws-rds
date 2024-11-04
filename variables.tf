@@ -67,6 +67,8 @@ variable "users" {
 
     endpoint = optional(string)
 
+    default_local_port = optional(number)
+
   }))
 
 }
